@@ -1,8 +1,8 @@
 package com.wangguangwu.test;
 
-import java.util.concurrent.locks.ReentrantLock;
+//import java.util.concurrent.locks.ReentrantLock;
 
-//import util.concurrent.locks.ReentrantLock;
+import util.concurrent.locks.ReentrantLock;
 
 /**
  * @author wangguangwu
