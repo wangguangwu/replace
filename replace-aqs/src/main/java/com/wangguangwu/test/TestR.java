@@ -4,12 +4,19 @@ package com.wangguangwu.test;
 
 import util.concurrent.locks.ReentrantLock;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author wangguangwu
  */
 public class TestR {
 
-    private static final ReentrantLock LOCK = new ReentrantLock();
+
+    /**
+     * 定义一个 ReentrantLock
+     * 默认是非公平锁
+     */
+    private static final ReentrantLock LOCK = new ReentrantLock(true);
 
     public static void main(String[] args) {
         int times = 10;
@@ -17,7 +24,7 @@ public class TestR {
             Thread thread = new Thread(() -> {
                 LOCK.lock();
                 try {
-                    Thread.sleep(1000);
+                    TimeUnit.SECONDS.sleep(1);
                     System.out.println("Hello World");
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
