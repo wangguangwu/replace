@@ -1,8 +1,11 @@
 package util.concurrent.locks;
 
-
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+//import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+
+import sun.misc.Unsafe;
+import util.concurrent.locks.AbstractQueuedSynchronizer;
+
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
@@ -153,13 +156,11 @@ public class ReentrantLock implements Lock, java.io.Serializable {
     @Override
     public boolean tryLock() {
         throw new UnsupportedOperationException();
-//        return false;
     }
 
     @Override
     public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
         throw new UnsupportedOperationException();
-//        return false;
     }
 
     @Override
@@ -170,6 +171,5 @@ public class ReentrantLock implements Lock, java.io.Serializable {
     @Override
     public Condition newCondition() {
         throw new UnsupportedOperationException();
-//        return null;
     }
 }

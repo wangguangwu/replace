@@ -1,22 +1,22 @@
 package com.wangguangwu.test;
 
-//import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantLock;
 
-import util.concurrent.locks.ReentrantLock;
+//import util.concurrent.locks.ReentrantLock;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author wangguangwu
  */
-public class TestR {
+public class TestReentrantLock {
 
 
     /**
      * 定义一个 ReentrantLock
      * 默认是非公平锁
      */
-    private static final ReentrantLock LOCK = new ReentrantLock(true);
+    private static final ReentrantLock LOCK = new ReentrantLock();
 
     public static void main(String[] args) {
         int times = 10;
