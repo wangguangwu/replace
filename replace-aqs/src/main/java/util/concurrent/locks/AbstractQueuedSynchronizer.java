@@ -20,18 +20,39 @@ public abstract class AbstractQueuedSynchronizer
 
     static final class Node {
 
+        /**
+         * 线程以共享的模式等待锁
+         */
         static final Node SHARED = new Node();
 
+        /**
+         * 线程以独占的方式等待锁
+         */
         static final Node EXCLUSIVE = null;
 
+        /**
+         * 表示线程获取锁的请求已经取消了
+         */
         static final int CANCELED = 1;
 
+        /**
+         * 线程已经准备好，等待资源释放
+         */
         static final int SIGNAL = -1;
 
+        /**
+         * 节点在等待队列中，节点线程等待唤醒
+         */
         static final int CONDITION = -2;
 
+        /**
+         * 当前线程处于 SHARED 模式下
+         */
         static final int PROPAGATE = -3;
 
+        /**
+         * 当前节点在队列中的状态
+         */
         volatile int waitStatus;
 
         volatile Node prev;
@@ -147,8 +168,8 @@ public abstract class AbstractQueuedSynchronizer
 
     final boolean acquireQueued(final Node node, int arg) {
         boolean failed = true;
-        boolean interrupted = false;
         try {
+            boolean interrupted = false;
             for (; ; ) {
                 // 拿到当前节点的前一个节点
                 final Node p = node.predecessor();
