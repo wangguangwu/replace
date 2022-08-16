@@ -1,10 +1,8 @@
 package util.concurrent.locks;
 
 import java.util.concurrent.TimeUnit;
-//import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
-import sun.misc.Unsafe;
-import util.concurrent.locks.AbstractQueuedSynchronizer;
+//import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -84,6 +82,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
 
         @Override
         void lock() {
+            System.out.println(Thread.currentThread() + "-lock-" + getState());
             // 直接尝试获得锁
             if (compareAndSetState(0, 1)) {
                 setExclusiveOwnerThread(Thread.currentThread());
@@ -165,6 +164,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
 
     @Override
     public void unlock() {
+        System.out.println(Thread.currentThread() + "-release-" + sync.getFirstQueuedThread());
         sync.release(1);
     }
 
