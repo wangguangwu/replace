@@ -2,7 +2,7 @@ package util.concurrent.locks;
 
 import java.util.concurrent.TimeUnit;
 
-//import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -83,11 +83,12 @@ public class ReentrantLock implements Lock, java.io.Serializable {
         @Override
         void lock() {
             System.out.println(Thread.currentThread() + "-lock-" + getState());
-            // 直接尝试获得锁
+            // 获取锁成功
             if (compareAndSetState(0, 1)) {
+                // 将当前线程设置为独占线程
                 setExclusiveOwnerThread(Thread.currentThread());
             } else {
-                // 获得锁失败，把当前线程包装为节点存入同步队列中
+                // 获得锁失败，进入 acquire 方法进行后续处理
                 acquire(1);
             }
         }
